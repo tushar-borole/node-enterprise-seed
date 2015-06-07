@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-module.exports = function(app,routes) {
+module.exports = function(app,routes,authenticate) {
     fs.readdirSync(__dirname).forEach(function(file) {
         if (file === "index.js" || file.substr(file.lastIndexOf('.') + 1) !== 'js')
             return;
@@ -8,7 +8,7 @@ module.exports = function(app,routes) {
         console.log(name)
         
         
-        require('./' + name+'.js')(app,routes);
+        require('./' + name+'.js')(app,routes,authenticate);
     });
     
 }

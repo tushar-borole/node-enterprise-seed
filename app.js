@@ -5,7 +5,7 @@ var db = require('./models');
 var express = require('express');
 var bodyParser = require('body-parser');
 var config = require('./config/config.js'); // get our config file
-var apiRoutes = express.Router(); 
+var authenticate = express.Router(); 
 var jwt = require('jsonwebtoken');
 
 // Setting Parameters to server
@@ -25,18 +25,9 @@ app.use(bodyParser.json());
 app.set('superSecret', config.secret); 
 
 
-// Routes to Function Assaignment
-/*app.get('/api/todo/:id', routes.todo.getOne);
-app.get('/api/todos', routes.todo.get);
-app.post('/api/todos', routes.todo.post);
-app.delete('/api/todos/:id', routes.todo.del);*/
-
-//user
-
-
 
 // route middleware to verify a token
-apiRoutes.use(function(req, res, next) {
+authenticate.use(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -66,9 +57,12 @@ apiRoutes.use(function(req, res, next) {
     
   }
 });
-app.use('/auth', apiRoutes);
+
+
+
+
 var routes =require('./controllers');
-require('./routes')(app,routes);
+require('./routes')(app,routes,authenticate);
 
 
 

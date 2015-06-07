@@ -39,8 +39,10 @@ Application configuration is contain in config.js
 
 This works on mvc patterns;
 
-> **controller** contains the locit to be written
+> **controller** contains the logic to be written;
+
 > **models** contain the database table configuration
+
 > **routes** contain the rest apis path
 
 If you cant to authenticathe the specific route;

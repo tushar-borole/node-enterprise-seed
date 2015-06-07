@@ -1,5 +1,6 @@
 module.exports = {
-
-    'secret': 'ilovescotchyscotch'
-
+    'secret': 'ilovescotchyscotch',
+    'database':'ngdiscuss',
+    'username':'root',
+    'password':'root'
 };

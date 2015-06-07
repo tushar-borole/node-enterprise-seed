@@ -3,11 +3,12 @@ var fs        = require('fs')
   , path      = require('path')
   , Sequelize = require('sequelize')
   , lodash    = require('lodash')
+,config = require('../config/config.js')
   /** 	MySQL DB: todo
 	*	MySQL Username: root
 	*	MySQL Password: null or blank
 	*/
-  , sequelize = new Sequelize('ngdiscuss', 'root', 'root')
+  , sequelize = new Sequelize(config.database, config.username, config.password)
   , db        = {};
 
 fs

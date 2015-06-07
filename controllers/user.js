@@ -2,16 +2,20 @@ var db = require('../models');
 var winston = require('winston');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config.js');
+var bcrypt = require('bcryptjs');
 
 // POST: /api/user
 /*Create user*/
 exports.createUser = function (req, res, next) {
 
+    var salt = bcrypt.genSaltSync(10);
+    // Hash the password with the salt
+
     var user = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         username: req.body.username,
-        password: req.body.password
+        password: bcrypt.hashSync(req.body.password, 10)
     }
 
 
@@ -31,22 +35,33 @@ exports.login = function (req, res, next) {
     // find the user
     db.User.findAll({
         where: {
-            username: req.body.username,
-            password: req.body.password
+            username: req.body.username
         }
-    }).success(function (todo) {
-     
-        var token = jwt.sign(todo, config.secret, {
-            expiresInMinutes: 1440 // expires in 24 hours
-        });
+    }).success(function (data) {
+        console.log("inn");
+        console.log(data[0].password);
+        var comparePassword = bcrypt.compareSync(req.body.password, data[0].password);
+        if (comparePassword) {
 
-        // return the information including token as JSON
-        res.send({
-            success: true,
-            message: 'Enjoy your token!',
-            token: token
-        });
-        return next();
+            var token = jwt.sign(data, config.secret, {
+                expiresInMinutes: 1440 // expires in 24 hours
+            });
+
+            // return the information including token as JSON
+            res.send({
+                error: false,
+                message: 'Enjoy your token!',
+                token: token
+            });
+             return next();
+        } else {
+            res.send({
+                error: true,
+                message: 'Invalid Password'
+            });
+             return next();
+        }
+       
     })
 };
 
@@ -62,4 +77,3 @@ exports.getAllUsers = function (req, res, next) {
         return next();
     })
 };
-

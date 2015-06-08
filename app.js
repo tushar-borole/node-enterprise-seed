@@ -71,7 +71,7 @@ require('./routes')(app,routes,authenticate);
  db
 .sequelize
 .sync({ force: false})
-.complete(function(err) {
+.nodeify(function(err) {
   if (err) {
     throw err;
   } else {

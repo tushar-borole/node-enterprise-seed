@@ -8,7 +8,7 @@ module.exports = function(app,routes,authenticate) {
         console.log(name)
         
         
-        require('./' + name+'.js')(app,routes,authenticate);
+        require('./'+file)(app,routes,authenticate);
     });
     
 }

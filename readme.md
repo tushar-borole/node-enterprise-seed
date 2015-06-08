@@ -1,4 +1,4 @@
-# node-rest-sequelize-seed
+# node-enterprise-seed
 
 node-rest-sequelize-seed is an seed application where use can build quick rest api. This seed has integrated user management. This seed use **token based authentication**. Database used is **MYSQL**
 

@@ -1,5 +1,5 @@
 {
-  "name": "node-rest-sequelize-seed",
+  "name": "node-enterprise-seed",
   "version": "0.0.1",
   "description": "rest node sequelized seed",
   "main": "app.js",

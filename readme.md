@@ -1,6 +1,6 @@
 # node-enterprise-seed
 
-node-rest-sequelize-seed is an seed application where use can build quick rest api. This seed has integrated user management. This seed use **token based authentication**. Database used is **MYSQL**
+node-enterprise-seed is an seed application where use can build quick rest api. This seed has integrated user management. This seed use **token based authentication**. Database used is **MYSQL**
 
 
 
@@ -9,7 +9,7 @@ node-rest-sequelize-seed is an seed application where use can build quick rest a
 clone the repository 
 
 ```sh
-git clone https://github.com/tushariscoolster/node-rest-sequelize-seed
+git clone https://github.com/tushariscoolster/node-enterprise-seed
 ```
 
 Install dependencies

@@ -22,3 +22,10 @@ module.exports = function (sequelize, DataTypes) {
 
     return User;
 };
+
+/*{
+        classMethods: {
+            associate: function (models) {
+                User.hasMany(models.Blog,{ foreignKey: 'user_id'});
+            }
+        },*/

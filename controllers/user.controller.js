@@ -19,7 +19,7 @@ exports.createUser = function (req, res, next) {
     }
 
 
-    db.User.create(user).success(function (todo) {
+    db.User.create(user).then(function (todo) {
         res.send(todo);
         return next();
     });
@@ -37,7 +37,7 @@ exports.login = function (req, res, next) {
         where: {
             username: req.body.username
         }
-    }).success(function (data) {
+    }).then(function (data) {
         console.log("inn");
         console.log(data[0].password);
         var comparePassword = bcrypt.compareSync(req.body.password, data[0].password);
@@ -69,7 +69,7 @@ exports.login = function (req, res, next) {
 exports.getAllUsers = function (req, res, next) {
 
     // find the user
-    db.User.findAll().success(function (data) {
+    db.User.findAll().then(function (data) {
 
 
         // return the information including token as JSON

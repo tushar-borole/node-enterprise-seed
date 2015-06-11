@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 var config = require('./config/config.js'); // get our config file
 var authenticate = express.Router();
 var jwt = require('jsonwebtoken');
+var Q = require('q');
+var validate = require("validate.js");
+validate.Promise = Q.Promise;
 
 // Setting Parameters to server
 /*var server = restify.createServer({
@@ -31,6 +34,9 @@ app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,HEAD,OPTIONS');
     next();
 });
+
+
+
 
 
 // route middleware to verify a token
@@ -71,8 +77,12 @@ authenticate.use(function (req, res, next) {
 
 
 
+
+
 var routes = require('./controllers');
-require('./routes')(app, routes, authenticate);
+var service = require('./services');
+var validation = require('./validations');
+require('./routes')(app, routes, authenticate, service,validation);
 
 
 
